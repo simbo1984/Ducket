@@ -1,27 +1,46 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
+import React, { useState } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../../containers/api/db';
+import { Source } from '../../containers/source';
+import { SourceForm } from '../../containers/source-form';
+import { TreeNav } from '../../containers/tree-nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Popup.css';
 
-const Popup = () => {
+export const Popup = () => {
+
+  const [isSetupMode, setIsSetupMode] = useState(false);
+  const sources = useLiveQuery(
+    () => db.sources.toArray()
+  );
+
+  if (!sources) return null; //Still loading
+
+  function handleToggle(e) {
+
+    isSetupMode ? setIsSetupMode(false) : setIsSetupMode(true);
+
+  }
+
+  if (isSetupMode) {
+    return (
+      <div>
+        <div className='topnav-container'>
+          <FontAwesomeIcon icon='fa-solid fa-book-bookmark' className='clickable-icon' onClick={handleToggle} />
+        </div>
+        <SourceForm />
+        {sources.map(source => <Source key={source.id} source={source} />)}
+      </div>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Popup/Popup.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-      </header>
+    <div>
+      <div className='topnav-container' >
+        <input type='text' id='search-box' placeholder='Search' />
+        <FontAwesomeIcon icon='fa-solid fa-gear' className='clickable-icon' onClick={handleToggle} />
+      </div>
+      <TreeNav />
     </div>
   );
 };
-
-export default Popup;

@@ -1,45 +1,57 @@
-.App {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  text-align: center;
-  height: 100%;
-  padding: 10px;
-  background-color: #282c34;
+* {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-use-select: none;
+  user-select: none;
 }
 
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
+.link {
+  font-size: 16px;
+  max-width: fit-content;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.link:hover {
+  cursor: pointer;
 }
 
-.App-header {
-  height: 100%;
+.treenav-tools {
+  font-size: 16px;
+  max-width: fit-content;
+}
+
+.treenav-tools:hover {
+  cursor: pointer;
+}
+
+.topnav-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  column-gap: 20px;
+  font-size: 24px;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  padding: 6px 10px 6px 10px;
+}
+
+.topnav-container>#search-box {
+  flex-grow: 3;
+}
+
+.tree {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
 }
 
-.App-link {
-  color: #61dafb;
+.clickable-icon:hover {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.caret {
+  font-size: 12px;
 }
