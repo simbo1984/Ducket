@@ -2,10 +2,8 @@ import { Buffer } from 'buffer';
 import { ParseMarkdown } from './links/methods';
 import { InsertSource, UpdateSource } from './sources/sources';
 
-const BASE_URL = 'https://dev.azure.com/' 
+const BASE_URL = 'https://dev.azure.com/'
 const API_VERSION = 'api-version=7.1-preview.1'
-
-//const pat = ":h2mfzddrpd2spmbjcuntyicqfpesxvagtnyad33cyz2w6oryfgfa"
 
 export async function GetAndUpsertSource(sourceObject, editedSource) {
 
@@ -33,7 +31,7 @@ export async function GetAndUpsertSource(sourceObject, editedSource) {
                         InsertSource(sourceObject, url, sourceId);
                     } else {
                         UpdateSource(editedSource.id, sourceObject)
-                    }      
+                    }
                 } else {
                     console.error(request.statusText);
                 }

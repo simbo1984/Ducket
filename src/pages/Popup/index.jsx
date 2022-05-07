@@ -7,9 +7,11 @@ import {
     faFile,
     faGear,
     faBookBookmark,
-    faCircleLeft,
     faCaretDown,
-    faCaretRight
+    faCaretRight,
+    faTrashCan,
+    faPlus,
+    faPencil
 } from '@fortawesome/free-solid-svg-icons'
 
 import './index.css';
@@ -19,9 +21,11 @@ library.add(
     faFile,
     faGear,
     faBookBookmark,
-    faCircleLeft,
     faCaretDown,
-    faCaretRight);
+    faCaretRight,
+    faTrashCan,
+    faPlus,
+    faPencil);
 
 render(<Popup />, window.document.querySelector('#app-container'));
 

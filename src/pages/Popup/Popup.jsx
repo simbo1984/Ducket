@@ -26,7 +26,9 @@ export const Popup = () => {
     return (
       <div>
         <div className='topnav-container'>
-          <FontAwesomeIcon icon='fa-solid fa-book-bookmark' className='clickable-icon' onClick={handleToggle} />
+          <FontAwesomeIcon icon='fa-solid fa-plus' className='clickable-icon' id='add-source' />
+          <div id='empty-container'></div>
+          <FontAwesomeIcon icon='fa-solid fa-book-bookmark' className='clickable-icon' id='go-to-bookmarks' onClick={handleToggle} />
         </div>
         <SourceForm />
         {sources.map(source => <Source key={source.id} source={source} />)}

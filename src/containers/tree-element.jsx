@@ -1,20 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { _setParentId } from './tree-nav';
+import { _setExpandedFolders, _expandedFolders, _links, CollapseFolders } from './tree-nav';
 
 export const TreeElement = ({ link }) => {
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isFolderExpanded, setIsFolderExpanded] = useState(false);
 
   const handleLink = e => {
 
     e.preventDefault();
 
-    if (link.level != -1) {
-      _setParentId(link.elementId);
-    } else {
-      window.open(link.url, '_blank');
-    }
+    window.open(link.url, '_blank');
 
   }
 
@@ -22,18 +18,37 @@ export const TreeElement = ({ link }) => {
 
     e.preventDefault();
 
-    if (link.level != -1) {
-      _setParentId(link.elementId);
-    } else {
-      window.open(link.url, '_blank');
-    }
+    if (!isFolderExpanded) {
 
+      _setExpandedFolders(_expandedFolders => [..._expandedFolders, link.elementId]);
+      setIsFolderExpanded(true);
+
+    } else {
+
+      CollapseFolders(link.elementId);
+      setIsFolderExpanded(false);
+
+    }
+  }
+
+  const setIndention = (isFolder) => {
+
+    if (isFolder) {
+
+      return (link.level + 1) * 4;
+
+    } else {
+
+      let parentLevel = _links.find(element => element.elementId === link.parentId).level;
+      return (parentLevel + 1) * 4 + 20;
+
+    }
   }
 
   if (link.url) {
 
     return (
-      <div className='link' onClick={handleLink} >
+      <div className='link' onClick={handleLink} style={{ marginLeft: setIndention(false) }} >
         <FontAwesomeIcon icon="fa-solid fa-file" /> {link.name}
       </div>
     );
@@ -41,15 +56,18 @@ export const TreeElement = ({ link }) => {
   } else {
 
     let arrowIcon;
+    if (isFolderExpanded) {
 
-    if (isExpanded) {
       arrowIcon = <FontAwesomeIcon icon="fa-solid fa-caret-down" className='caret' />
+
     } else {
+
       arrowIcon = <FontAwesomeIcon icon="fa-solid fa-caret-right" className='caret' />
+
     }
 
     return (
-      <div className='link' onClick={handleFolder} data-state={isExpanded}>
+      <div className='link' onClick={handleFolder} style={{ marginLeft: setIndention(true) }} >
         {arrowIcon} <FontAwesomeIcon icon="fa-solid fa-folder" /> {link.name}
       </div>
     )

@@ -15,15 +15,6 @@
   cursor: pointer;
 }
 
-.treenav-tools {
-  font-size: 16px;
-  max-width: fit-content;
-}
-
-.treenav-tools:hover {
-  cursor: pointer;
-}
-
 .topnav-container {
   display: flex;
   flex-direction: row;
@@ -41,6 +32,11 @@
   flex-grow: 3;
 }
 
+.topnav-container>#empty-container {
+  flex-grow: 3;
+  height: 24px;
+}
+
 .tree {
   display: flex;
   flex-direction: column;
@@ -54,4 +50,16 @@
 
 .caret {
   font-size: 12px;
+}
+
+.source-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.source-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }

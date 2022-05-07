@@ -20,8 +20,7 @@ export const SourceForm = () => {
     const [editedSource, setEditedSource] = useState({
         isEditMode: false,
         id: ""
-    }
-    );
+    });
 
     useEffect(() => {
         _setSourceName = setSourceName;
