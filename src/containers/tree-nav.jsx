@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { TreeElement } from './tree-element';
 import { db } from '../containers/api/db';
 import { useLiveQuery } from 'dexie-react-hooks';
+import * as uuid from 'uuid';
 
-export let _setSourceId;
 export let _setExpandedFolders;
 export let _expandedFolders;
 export let _links;
 
 export const TreeNav = () => {
 
-  const [sourceId, setSourceId] = useState('4e4dba55-cbcd-45d9-a227-19cbc4cfe1ff') //TODO: To be set dynamically
   const [expandedFolders, setExpandedFolders] = useState([]);
 
   useEffect(() => {
-    _setSourceId = setSourceId;
     _setExpandedFolders = setExpandedFolders;
   });
 
@@ -23,6 +21,7 @@ export const TreeNav = () => {
   const links = useLiveQuery(
     async () => {
 
+      const sourceId = await GetUsedSourceFromStorage();
       const links = await db.links
         .where('sourceId')
         .equals(sourceId)
@@ -72,3 +71,11 @@ export function CollapseFolders(collapsedElementId) {
   _setExpandedFolders(expandedFoldersNew);
 
 }
+
+function GetUsedSourceFromStorage() {
+
+  let usedSource = chrome.storage.local.get('usedSource')
+    .then(storageItem => usedSource = storageItem.usedSource);
+
+  return usedSource;
+} 

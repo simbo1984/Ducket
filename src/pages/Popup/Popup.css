@@ -7,12 +7,22 @@
 }
 
 .link {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   font-size: 16px;
   max-width: fit-content;
 }
 
 .link:hover {
   cursor: pointer;
+}
+
+#folder-arrow {
+  text-align: center;
+  width: 6px;
+  padding: 0px 4px 3px 0px;
 }
 
 .topnav-container {
@@ -52,14 +62,25 @@
   font-size: 12px;
 }
 
-.source-form {
-  display: flex;
+#source-form {
   flex-direction: column;
   flex-wrap: nowrap;
+  margin-top: 6px;
 }
 
-.source-container {
+#source-form>input {
+  padding: 2px;
+  margin: 0px 0px 2px 0px;
+}
+
+#source-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+#source-container>#source-name {
+  flex-grow: 3;
 }

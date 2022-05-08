@@ -8,6 +8,8 @@ export let _setRepo;
 export let _setFilePath;
 export let _setPat;
 export let _setEditedSource;
+export let _displayType;
+export let _setDisplayType;
 
 export const SourceForm = () => {
 
@@ -21,6 +23,7 @@ export const SourceForm = () => {
         isEditMode: false,
         id: ""
     });
+    const [displayType, setDisplayType] = useState('none');
 
     useEffect(() => {
         _setSourceName = setSourceName;
@@ -30,6 +33,8 @@ export const SourceForm = () => {
         _setFilePath = setFilepath;
         _setPat = setPat;
         _setEditedSource = setEditedSource;
+        _displayType = displayType;
+        _setDisplayType = setDisplayType;
     })
 
     function clean() {
@@ -64,7 +69,7 @@ export const SourceForm = () => {
     }
 
     return (
-        <form className="source-form" onSubmit={handleSubmit}>
+        <form id='source-form' style={{ display: displayType }} onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Name of source"
@@ -91,7 +96,7 @@ export const SourceForm = () => {
             />
             <input
                 type="text"
-                placeholder="Filepath from the root"
+                placeholder="Filepath from root (i.e. /example/file.md)"
                 value={filepath}
                 onChange={(e) => setFilepath(e.target.value)}
             />

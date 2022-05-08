@@ -11,8 +11,12 @@ import {
     faCaretRight,
     faTrashCan,
     faPlus,
-    faPencil
+    faPen
 } from '@fortawesome/free-solid-svg-icons'
+import {
+    faSquare,
+    faSquareCheck
+} from '@fortawesome/free-regular-svg-icons'
 
 import './index.css';
 
@@ -25,7 +29,9 @@ library.add(
     faCaretRight,
     faTrashCan,
     faPlus,
-    faPencil);
+    faPen,
+    faSquare,
+    faSquareCheck);
 
 render(<Popup />, window.document.querySelector('#app-container'));
 

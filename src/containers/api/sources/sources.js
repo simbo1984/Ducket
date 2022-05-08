@@ -51,6 +51,11 @@ export async function RemoveSource(sourceId) {
 
         await db.sources.delete(sourceId);
         await RemoveLinksFromSource(sourceId);
+        chrome.storage.local.get(['usedSource'], result => {
+            if (result.usedSource === sourceId) {
+                chrome.storage.local.set({ usedSource: null })
+            };
+        });
 
     } catch (error) {
 

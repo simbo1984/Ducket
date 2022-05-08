@@ -68,7 +68,8 @@ export const TreeElement = ({ link }) => {
 
     return (
       <div className='link' onClick={handleFolder} style={{ marginLeft: setIndention(true) }} >
-        {arrowIcon} <FontAwesomeIcon icon="fa-solid fa-folder" /> {link.name}
+        <div className='clickable-icon' id='folder-arrow'>{arrowIcon}</div>
+        <FontAwesomeIcon icon="fa-solid fa-folder" /> {link.name}
       </div>
     )
 
