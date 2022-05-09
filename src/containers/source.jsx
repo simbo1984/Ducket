@@ -1,32 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as setters from './source-form';
 import { RemoveSource } from '../containers/api/sources/sources';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { _setUsedSource } from '../pages/Popup/Popup'
 
-export const Source = ({ source }) => {
-
-    const [sourceState, setSourceState] = useState(null);
-
-    chrome.storage.local.get('usedSource', result => {
-        if (result.usedSource === source.id) {
-            setSourceState(source.id);
-        } else {
-            setSourceState(null);
-        }
-    });
+export const Source = ({ source, usedSource }) => {
 
     const handleEdit = e => {
 
         e.preventDefault();
 
-        setters._setEditedSource({ isEditMode: true, id: source.id })
-        setters._setSourceName(source.sourceName);
-        setters._setOrganization(source.organization);
-        setters._setProject(source.project);
-        setters._setRepo(source.repo);
-        setters._setFilePath(source.filepath);
-        setters._setPat(source.pat);
+        if (setters._displayType === 'none') {
 
+            setters._setEditedSource({ isEditMode: true, id: source.id })
+            setters._setSourceName(source.sourceName);
+            setters._setOrganization(source.organization);
+            setters._setProject(source.project);
+            setters._setRepo(source.repo);
+            setters._setFilePath(source.filepath);
+            setters._setPat(source.pat);
+
+            setters._setDisplayType('flex');
+        } else {
+
+            setters._setEditedSource({ isEditMode: false, id: source.id })
+            setters._setSourceName("");
+            setters._setOrganization("");
+            setters._setProject("");
+            setters._setRepo("");
+            setters._setFilePath("");
+            setters._setPat("");
+
+            setters._setDisplayType('none');
+        }
     }
 
     const handleDelete = e => {
@@ -35,7 +41,6 @@ export const Source = ({ source }) => {
 
         RemoveSource(source.id);
 
-
     }
 
     const handleSelect = e => {
@@ -43,11 +48,11 @@ export const Source = ({ source }) => {
         e.preventDefault();
 
         chrome.storage.local.set({ usedSource: source.id });
-        setSourceState(source.id);
+        _setUsedSource(source.id);
     }
 
     let checkIcon;
-    if (sourceState === source.id) {
+    if (usedSource === source.id) {
 
         checkIcon = <FontAwesomeIcon icon='fa-regular fa-square-check' className='clickable-icon' id='select-source' onClick={handleSelect} />
 

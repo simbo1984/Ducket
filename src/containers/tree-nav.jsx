@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { TreeElement } from './tree-element';
 import { db } from '../containers/api/db';
 import { useLiveQuery } from 'dexie-react-hooks';
-import * as uuid from 'uuid';
 
 export let _setExpandedFolders;
 export let _expandedFolders;
@@ -72,7 +71,7 @@ export function CollapseFolders(collapsedElementId) {
 
 }
 
-function GetUsedSourceFromStorage() {
+export function GetUsedSourceFromStorage() {
 
   let usedSource = chrome.storage.local.get('usedSource')
     .then(storageItem => usedSource = storageItem.usedSource);

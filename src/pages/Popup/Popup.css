@@ -22,7 +22,6 @@
 #folder-arrow {
   text-align: center;
   width: 6px;
-  padding: 0px 4px 3px 0px;
 }
 
 .topnav-container {
@@ -54,6 +53,10 @@
   justify-content: flex-start;
 }
 
+.clickable-icon {
+  margin: 0px 4px 0px 4px;
+}
+
 .clickable-icon:hover {
   cursor: pointer;
 }
@@ -79,6 +82,7 @@
   flex-wrap: nowrap;
   margin-top: 6px;
   font-size: 16px;
+  align-items: center;
 }
 
 #source-container>#source-name {

@@ -45,6 +45,8 @@ export const SourceForm = () => {
         setFilepath("");
         setPat("");
         setEditedSource({ isEditMode: false, id: "" });
+
+        setDisplayType('none');
     }
 
     const handleSubmit = e => {
@@ -69,43 +71,62 @@ export const SourceForm = () => {
     }
 
     return (
-        <form id='source-form' style={{ display: displayType }} onSubmit={handleSubmit}>
+        <form class='form__group field' id='source-form' style={{ display: displayType }} onSubmit={handleSubmit}>
             <input
+                className='form__field'
                 type="text"
-                placeholder="Name of source"
+                name='name'
+                placeholder="Name"
+                maxLength="28"
                 value={sourceName}
                 onChange={(e) => _setSourceName(e.target.value)}
-            />
+                required
+            /><label for='Name' className='form__label'>Name</label>
             <input
+                className='form__field'
                 type="text"
+                name='organizationName'
                 placeholder="Organization name"
                 value={organization}
                 onChange={(e) => _setOrganization(e.target.value)}
-            />
+                required
+            /><label for='organizationName' className='form__label'>Organization Name</label>
             <input
+                className='form__field'
                 type="text"
+                name='projectId'
                 placeholder="Project name/ID"
                 value={project}
                 onChange={(e) => setProject(e.target.value)}
-            />
+                required
+            /><label for='projectId' className='form__label'>Project Name/ID</label>
             <input
+                className='form__field'
                 type="text"
+                name='repoId'
                 placeholder="Repo name/ID"
                 value={repo}
                 onChange={(e) => setRepo(e.target.value)}
-            />
+                required
+            /><label for='repoId' className='form__label'>Repo Name/ID</label>
             <input
+                className='form__field'
                 type="text"
+                name='filepath'
                 placeholder="Filepath from root (i.e. /example/file.md)"
                 value={filepath}
                 onChange={(e) => setFilepath(e.target.value)}
-            />
+                required
+            /><label for='filepath' className='form__label'>Filepath</label>
             <input
+                className='form__field'
                 type="password"
+                name='pat'
                 placeholder="Personal access token"
                 value={pat}
                 onChange={(e) => setPat(e.target.value)}
-            />
+                required
+            /><label for='pat' className='form__label'>Personal Access Token</label>
 
             <button type="submit">Set Source</button>
         </form>
