@@ -71,64 +71,38 @@ export const SourceForm = () => {
     }
 
     return (
-        <form class='form__group field' id='source-form' style={{ display: displayType }} onSubmit={handleSubmit}>
-            <input
-                className='form__field'
-                type="text"
-                name='name'
-                placeholder="Name"
-                maxLength="28"
-                value={sourceName}
-                onChange={(e) => _setSourceName(e.target.value)}
-                required
-            /><label for='Name' className='form__label'>Name</label>
-            <input
-                className='form__field'
-                type="text"
-                name='organizationName'
-                placeholder="Organization name"
-                value={organization}
-                onChange={(e) => _setOrganization(e.target.value)}
-                required
-            /><label for='organizationName' className='form__label'>Organization Name</label>
-            <input
-                className='form__field'
-                type="text"
-                name='projectId'
-                placeholder="Project name/ID"
-                value={project}
-                onChange={(e) => setProject(e.target.value)}
-                required
-            /><label for='projectId' className='form__label'>Project Name/ID</label>
-            <input
-                className='form__field'
-                type="text"
-                name='repoId'
-                placeholder="Repo name/ID"
-                value={repo}
-                onChange={(e) => setRepo(e.target.value)}
-                required
-            /><label for='repoId' className='form__label'>Repo Name/ID</label>
-            <input
-                className='form__field'
-                type="text"
-                name='filepath'
-                placeholder="Filepath from root (i.e. /example/file.md)"
-                value={filepath}
-                onChange={(e) => setFilepath(e.target.value)}
-                required
-            /><label for='filepath' className='form__label'>Filepath</label>
-            <input
-                className='form__field'
-                type="password"
-                name='pat'
-                placeholder="Personal access token"
-                value={pat}
-                onChange={(e) => setPat(e.target.value)}
-                required
-            /><label for='pat' className='form__label'>Personal Access Token</label>
+        <form  id='source-form' style={{ display: displayType }} onSubmit={handleSubmit}>
+            <div className='form-group'>
+                <span>Name</span>
+                <input type="text" maxLength="28" className='form-field' value={sourceName} onChange={(e) => _setSourceName(e.target.value)} required />
+            </div>
 
-            <button type="submit">Set Source</button>
+            <div className='form-group'>
+                <span>Organization Name</span>
+                <input type="text" className='form-field' value={organization} onChange={(e) => _setOrganization(e.target.value)} required />
+            </div>
+            
+            <div className='form-group'>
+                <span>Project Name/ID</span>
+                <input type="text" className='form-field' value={project} onChange={(e) => setProject(e.target.value)} required />
+            </div>
+
+            <div className='form-group'>
+                <span>Repo Name/ID</span>
+                <input type="text" className='form-field' value={repo} onChange={(e) => setRepo(e.target.value)} required />
+            </div>
+            
+            <div className='form-group'>
+                <span>Filepath</span>
+                <input type="text" className='form-field' value={filepath} onChange={(e) => setFilepath(e.target.value)} required />
+            </div>
+
+            <div className='form-group'>
+                <span>Personal Access Token</span>
+                <input type="password" className='form-field' value={pat} onChange={(e) => setPat(e.target.value)} required />
+            </div>
+
+            <button type="submit" id='submit-button'>Set Source</button>
         </form>
     );
 };

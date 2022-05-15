@@ -3,15 +3,15 @@ import { render } from 'react-dom';
 import { Popup } from './Popup';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-    faFolder,
+    faFolderClosed,
+    faFolderOpen,
     faFile,
     faGear,
     faBookBookmark,
-    faCaretDown,
-    faCaretRight,
     faTrashCan,
     faPlus,
-    faPen
+    faPen,
+    faBucket
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faSquare,
@@ -21,17 +21,17 @@ import {
 import './index.css';
 
 library.add(
-    faFolder,
+    faFolderClosed,
+    faFolderOpen,
     faFile,
     faGear,
     faBookBookmark,
-    faCaretDown,
-    faCaretRight,
     faTrashCan,
     faPlus,
     faPen,
     faSquare,
-    faSquareCheck);
+    faSquareCheck,
+    faBucket);
 
 render(<Popup />, window.document.querySelector('#app-container'));
 

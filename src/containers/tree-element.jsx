@@ -35,12 +35,12 @@ export const TreeElement = ({ link }) => {
 
     if (isFolder) {
 
-      return (link.level + 1) * 4;
+      return (link.level + 1) * 8;
 
     } else {
 
       let parentLevel = _links.find(element => element.elementId === link.parentId).level;
-      return (parentLevel + 1) * 4 + 20;
+      return (parentLevel + 1) * 8 + 8;
 
     }
   }
@@ -48,28 +48,16 @@ export const TreeElement = ({ link }) => {
   if (link.url) {
 
     return (
-      <div className='link' onClick={handleLink} style={{ marginLeft: setIndention(false) }} >
+      <div className='link' onClick={handleLink} style={{ marginLeft: setIndention(false)}} >
         <FontAwesomeIcon icon="fa-solid fa-file" /> {link.name}
       </div>
     );
 
   } else {
 
-    let arrowIcon;
-    if (isFolderExpanded) {
-
-      arrowIcon = <FontAwesomeIcon icon="fa-solid fa-caret-down" className='caret' />
-
-    } else {
-
-      arrowIcon = <FontAwesomeIcon icon="fa-solid fa-caret-right" className='caret' />
-
-    }
-
     return (
-      <div className='link' onClick={handleFolder} style={{ marginLeft: setIndention(true) }} >
-        <div className='clickable-icon' id='folder-arrow'>{arrowIcon}</div>
-        <FontAwesomeIcon icon="fa-solid fa-folder" className='clickable-icon' /> {link.name}
+      <div className='link' onClick={handleFolder} style={{ marginLeft: setIndention(true)}} >
+        <FontAwesomeIcon icon={ (isFolderExpanded) ? "fa-solid fa-folder-open" : "fa-solid fa-folder-closed" }  /> {link.name}
       </div>
     )
 

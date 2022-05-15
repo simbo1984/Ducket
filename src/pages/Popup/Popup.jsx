@@ -8,6 +8,8 @@ import { GetUsedSourceFromStorage, TreeNav } from '../../containers/tree-nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Popup.css';
 
+//TODO: Fetch auto du MD
+
 export let _setUsedSource;
 
 export const Popup = () => {
@@ -63,7 +65,7 @@ export const Popup = () => {
 
   if (isSetupMode) {
     return (
-      <div>
+      <div id='sub-app-container'>
         <div className='topnav-container'>
           <FontAwesomeIcon icon='fa-solid fa-plus' className='clickable-icon' id='add-source' onClick={handleAdd} />
           <div id='empty-container'></div>
@@ -76,7 +78,7 @@ export const Popup = () => {
   }
 
   return (
-    <div>
+    <div id='sub-app-container'>
       <div className='topnav-container' >
         <input type='text' id='search-box' placeholder='Search' />
         <FontAwesomeIcon icon='fa-solid fa-gear' className='clickable-icon' onClick={handleToggle} />
