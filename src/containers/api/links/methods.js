@@ -1,17 +1,33 @@
-import { InsertLink } from './links';
+import {  InsertLinks, UpsertLinks } from './links';
+import { db } from "../db";
 import * as uuid from 'uuid';
 
-export function ParseMarkdown(markdownText) {
+export function ParseMarkdown(markdownText, editedSourceId) {
 
-  const sourceId = uuid.v4();
-  const regex = new RegExp('\\r\\n|\\n', 'g')
+  if (!editedSourceId) {
+    const sourceId = uuid.v4();
+    const regex = new RegExp('\\r\\n|\\n', 'g')
 
-  const entries = markdownText.split(regex).map(CreateBaseObject);
-  const links = entries.map(CreateLinkObject);
+    const entries = markdownText.split(regex).map(CreateBaseObject);
+    const links = entries.map(CreateLinkObject);
+    InsertLinks(links, sourceId);
 
-  links.forEach((link) => InsertLink(link, sourceId));
+    return sourceId;
 
-  return sourceId;
+  } else {
+    const regex = new RegExp('\\r\\n|\\n', 'g');
+    const entries = markdownText.split(regex).map(CreateBaseObject);
+    const hasChanged = CompareLinksFromSource(entries, editedSourceId);
+
+    if (hasChanged) {
+      const links = entries.map(CreateLinkObject);
+      UpsertLinks(links, editedSourceId);
+
+    };
+
+    return editedSourceId;
+  };
+
 }
 
 function CreateBaseObject(entry) {
@@ -46,6 +62,20 @@ function CreateBaseObject(entry) {
 
   entry = refObject;
   return entry;
+}
+
+function CompareLinksFromSource(entries, sourceId) {
+
+  const hasChanged = db.links.where('sourceId').equals(sourceId).toArray( async (array) => {
+    array.forEach((entry, index) => {
+      if ((entries.at(index).name != entry.name) || (entries.at(index).url != entry.url) || (entries.at(index).level != entry.level)) {       
+        return true;
+      }
+    });
+    return false;
+  }).then(result => { return result; });
+
+  return hasChanged;
 }
 
 function CreateLinkObject(entry, index, array) {

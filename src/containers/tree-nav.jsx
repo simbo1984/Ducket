@@ -21,9 +21,13 @@ export const TreeNav = () => {
     async () => {
 
       const sourceId = await GetUsedSourceFromStorage();
+
+      if (sourceId === undefined || sourceId === null) {
+        return null;
+      }
       const links = await db.links
         .where('sourceId')
-        .equals(sourceId)
+        .equalsIgnoreCase(sourceId)
         .toArray();
 
       return links;
@@ -37,7 +41,7 @@ export const TreeNav = () => {
       return link.parentId === null;
     }
 
-    return expandedFolders.includes(link.elementId) || expandedFolders.includes(link.parentId);
+    return expandedFolders.includes(link.elementId) || expandedFolders.includes(link.parentId) || link.parentId === null;
 
   }
 

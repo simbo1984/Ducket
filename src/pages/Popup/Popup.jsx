@@ -8,7 +8,12 @@ import { GetUsedSourceFromStorage, TreeNav } from '../../containers/tree-nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Popup.css';
 
-//TODO: Fetch auto du MD
+//TODO: Encoding of PAT
+//TODO: Dynamical Light/Dark mode
+//TODO: Add banner to indicate near expiration of PAT
+//TODO: Add banner when failure with add source
+//TODO: Font + Styling CSS
+//TODO: Implement dynamic search
 
 export let _setUsedSource;
 
@@ -21,8 +26,13 @@ export const Popup = () => {
     _setUsedSource = setUsedSource;
 
     let sourceId = await GetUsedSourceFromStorage();
-    setUsedSource(sourceId);
 
+    if (sourceId === undefined) {
+      setUsedSource(null);
+    } else {
+      setUsedSource(sourceId);
+    }
+    
   });
 
   const [isSetupMode, setIsSetupMode] = useState(false);

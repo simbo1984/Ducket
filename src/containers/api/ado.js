@@ -7,7 +7,6 @@ const API_VERSION = 'api-version=7.1-preview.1'
 
 export async function GetAndUpsertSource(sourceObject, editedSource) {
 
-    const request = new XMLHttpRequest();
     const org = sourceObject.organization;
     const proj = sourceObject.project;
     const repo = sourceObject.repo;
@@ -15,33 +14,37 @@ export async function GetAndUpsertSource(sourceObject, editedSource) {
     const uri = `${org}/${proj}/_apis/git/repositories/${repo}/items?path=${path}`
 
     const url = BASE_URL.concat(uri, '&', API_VERSION);
-
     const token = CreateAuthToken(sourceObject.pat);
 
-    if (request) {
-        request.open('GET', url, true);
-        request.setRequestHeader('Authorization', token);
-        request.setRequestHeader('Accept', 'text/markdown');
-        request.withCredentials = false;
-        request.onload = () => {
-            if (request.readyState === 4) {
-                if (request.status == 200) {
-                    if (!editedSource.isEditMode) {
-                        let sourceId = ParseMarkdown(request.response);
-                        InsertSource(sourceObject, url, sourceId);
-                    } else {
-                        UpdateSource(editedSource.id, sourceObject)
-                    }
-                } else {
-                    console.error(request.statusText);
-                }
-            }
-        };
-        request.onerror = () => {
-            console.error(request.statusText);
-        };
-        request.send(null);
+    const requestInfo = {
+        method: 'GET',
+        headers: {
+            'Authorization': token,
+            'Accept': 'text/markdown',
+            'Credentials': 'omit'
+        }
     };
+
+    fetch(url, requestInfo).then(response => {
+        if (response.status === 200) {
+            response.text().then(text => {
+
+                if (!editedSource.isEditMode) {
+                    let sourceId = ParseMarkdown(text, null);
+                    InsertSource(sourceObject, url, sourceId);
+
+                } else {
+                    let sourceId = ParseMarkdown(text, editedSource.id);
+                    UpdateSource(sourceId, sourceObject)
+                };
+            });
+
+        } else {
+            console.error(response.status);
+        };
+    }).catch(error => {
+        console.error(error);
+    });
 }
 
 function CreateAuthToken(pat) {
@@ -50,5 +53,4 @@ function CreateAuthToken(pat) {
     const token = 'Basic ' + Buffer.from(_pat).toString('base64');
 
     return token;
-
 }

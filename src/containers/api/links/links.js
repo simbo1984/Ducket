@@ -1,22 +1,43 @@
 import { db } from "../db";
 
-export async function InsertLink(linkObject, sourceId) {
+export async function InsertLinks(links, sourceId) {
 
     try {
 
-        let obj = linkObject;
-        obj.sourceId = sourceId;
-        obj.createdAt = new Date();
-        obj.modified = new Date();
+        const completeLinks = links.map(link => {
+            link.sourceId = sourceId;
+            link.createdAt = new Date();
+            return link;
+        });
 
-        await db.links.add(obj);
+        await db.links.bulkAdd(completeLinks);
 
     } catch (error) {
 
-        console.error(`Failed to add ${linkObject.name} to database: ${error}`);
+        console.error(`Failed to add links from source ${sourceId} to database: ${error}`);
 
     }
 
+}
+
+export async function UpsertLinks(links, sourceId) {
+
+    try {
+
+        const completeLinks = links.map(link => {
+            link.sourceId = sourceId;
+            link.createdAt = new Date();
+            return link;
+        });
+
+        await db.links.where('sourceId').equalsIgnoreCase(sourceId).delete();
+        await db.links.bulkAdd(completeLinks);
+
+    } catch (error) {
+
+        console.error(`Failed to upsert links from source ${sourceId} to database: ${error}`);
+        
+    }
 }
 
 export async function RemoveLinksFromSource(sourceId) {
