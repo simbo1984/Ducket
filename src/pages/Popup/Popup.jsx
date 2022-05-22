@@ -6,9 +6,9 @@ import  * as setters from '../../containers/source-form';
 import {SourceForm} from '../../containers/source-form';
 import { GetUsedSourceFromStorage, TreeNav } from '../../containers/tree-nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LogoBar } from '../../containers/logo-bar';
 import './Popup.css';
 
-//TODO: Encoding of PAT
 //TODO: Dynamical Light/Dark mode
 //TODO: Add banner to indicate near expiration of PAT
 //TODO: Add banner when failure with add source
@@ -26,7 +26,6 @@ export const Popup = () => {
     _setUsedSource = setUsedSource;
 
     let sourceId = await GetUsedSourceFromStorage();
-
     if (sourceId === undefined) {
       setUsedSource(null);
     } else {
@@ -36,6 +35,7 @@ export const Popup = () => {
   });
 
   const [isSetupMode, setIsSetupMode] = useState(false);
+
   const sources = useLiveQuery(
     () => db.sources.toArray()
   );
@@ -76,6 +76,7 @@ export const Popup = () => {
   if (isSetupMode) {
     return (
       <div id='sub-app-container'>
+        <LogoBar />
         <div className='topnav-container'>
           <FontAwesomeIcon icon='fa-solid fa-plus' className='clickable-icon' id='add-source' onClick={handleAdd} />
           <div id='empty-container'></div>
@@ -89,6 +90,7 @@ export const Popup = () => {
 
   return (
     <div id='sub-app-container'>
+      <LogoBar />
       <div className='topnav-container' >
         <input type='text' id='search-box' placeholder='Search' />
         <FontAwesomeIcon icon='fa-solid fa-gear' className='clickable-icon' onClick={handleToggle} />

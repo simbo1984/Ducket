@@ -1,10 +1,29 @@
 :root {
-    --dark-grey-color: #2B2D42;
-    --light-grey-color: #8D99AE;
-    --silver-color: #EDF2F4;
-    --red-color: #EF233C;
-    --dark-red-color: #D90429;
+  --primary-xanadu: #828E82;
+  --secondary-deep-space-sparkle: #3A606E;
+  --secondary-steel-teal: #607B7D;
+  --secondary-laurel-green: #AAAE8E;
+  --secondary-gainsboro: #E0E0E0;
+}
+  
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #1D1D1D;
+    --divider: #9E9E9E;
+    --background-variant: #E0E0E0;
+    --background: #FAFAFA;
   }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #FAFAFA;
+    --divider: #878787;
+    --background-variant: #545454;
+    --background: #1D1D1D;
+  }
+}
+
   
 * {
   -webkit-user-select: none;
@@ -17,9 +36,29 @@
 }
 
 body {
-  background-color: var(--silver-color);
+  background-color: var(--background);
 }
 
+#logo {
+  height: 48px;
+  width: 48px;  
+}
+
+#logo-bar {
+  height: 54px;
+  background: var(--primary-xanadu);
+  background: -webkit-linear-gradient(top left, var(--primary-xanadu), var(--secondary-laurel-green));
+  background: -moz-linear-gradient(top left, var(--primary-xanadu), var(--secondary-laurel-green));
+  background: linear-gradient(to bottom right, var(--primary-xanadu), var(--secondary-laurel-green));
+  color: var(--secondary-gainsboro);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 32px;
+  font-family: 'Concert One', cursive;
+  gap: 4px;
+}
 
 .link {
   display: flex;
@@ -29,7 +68,7 @@ body {
   font-size: 16px;
   max-width: fit-content;
   gap: 4px;
-  color: var(--dark-grey-color);
+  color: var(--text);
 }
 
 .link:hover {
@@ -53,9 +92,9 @@ body {
   align-items: center;
   justify-content: flex-end;
   font-size: 24px;
-  background-color: var(--light-grey-color);
+  background-color: var(--background);
   padding: 6px 10px 6px 10px;
-  border-bottom: 2px solid var(--dark-grey-color);
+  border-bottom: 1px solid var(--divider);
 }
 
 .topnav-container>#search-box {
@@ -82,12 +121,12 @@ body {
 
 .clickable-icon {
   margin: 0px 4px 0px 4px;
-  color: var(--dark-grey-color);
+  color: var(--text);
 }
 
 .non-clickable-icon {
   margin: 0px 4px 0px 0px;
-  color: var(--dark-grey-color);  
+  color: var(--text);  
 }
 
 .clickable-icon:hover {
@@ -116,16 +155,16 @@ body {
     font-family: inherit;
     border-radius: 6px;
     -webkit-appearance: none;
-    color: var(--dark-grey-color);
-    border: 1px solid var(--dark-grey-color);
-    background: var(--silver-color);
+    color: var(--text);
+    border: 1px solid var(--divider);
+    background: var(--background-variant);
     transition: border .3s ease;
     &::placeholder {
-        color: var(--dark-grey-color);
+        color: var(--text);
     }
     &:focus {
         outline: none;
-        border-color: var(--dark-red-color);
+        border-color: var(--secondary-deep-space-sparkle);
     }
 }
 
@@ -163,16 +202,16 @@ body {
     text-align: center;
     padding: 3px 10px;
     font-size: 12px;
-    color: var(--dark-grey-color);
-    background: var(--light-grey-color);
-    border: 1px solid var(--dark-grey-color);
+    color: var(--text);
+    background: var(--background-variant);
+    border: 1px solid var(--divider);
     transition: background .3s ease, border .3s ease, color .3s ease;
   }
   &:focus-within {
     & > span {
       color: white;
-      background: var(--red-color);
-      border-color: var(--dark-red-color);
+      background: var(--secondary-steel-teal);
+      border-color: var(--secondary-deep-space-sparkle);
     }
   }
 }
@@ -181,17 +220,17 @@ body {
   width: 35%;
   height: 36px;
   align-self: flex-end;
-  border: 1px solid var(--dark-red-color);
+  border: 1px solid var(--secondary-deep-space-sparkle);
   border-radius: 8px;  
   color: white;
-  background-color: var(--red-color);
+  background-color: var(--primary-xanadu);
   transition: background-color 0.3s, border-color 0.3s;
 }
 
 #submit-button:hover {
   cursor: pointer;
-  background-color: var(--light-grey-color);
-  border-color: var(--dark-grey-color);
+  background-color: var(--background-variant);
+  border-color: var(--text);
 }
 
 #source-container {

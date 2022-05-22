@@ -4,7 +4,8 @@ var webpack = require('webpack'),
   env = require('./utils/env'),
   CopyWebpackPlugin = require('copy-webpack-plugin'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
-  TerserPlugin = require('terser-webpack-plugin');
+  TerserPlugin = require('terser-webpack-plugin'),
+  DotenvPlugin = require('dotenv-webpack');
 var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
@@ -110,6 +111,10 @@ var options = {
     new webpack.ProgressPlugin(),
     // expose and write the allowed env vars on the compiled bundle
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new DotenvPlugin({
+      path: './.env',
+      safe: true,
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {

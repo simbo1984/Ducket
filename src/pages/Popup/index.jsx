@@ -17,7 +17,6 @@ import {
     faSquare,
     faSquareCheck
 } from '@fortawesome/free-regular-svg-icons'
-
 import './index.css';
 
 library.add(
