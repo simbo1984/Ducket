@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 import { ParseMarkdown } from './links/methods';
 import { InsertSource, UpdateSource } from './sources/sources';
+import { _setError } from '../banner';
 import * as CryptoJS from 'crypto-js'
 
 const BASE_URL = 'https://dev.azure.com/'
@@ -47,9 +48,19 @@ export async function GetAndUpsertSource(sourceObject, editedSource) {
 
         } else {
             console.error(response.status);
+            _setError({
+                message: `${response.status}: An error occured with the request.`,
+                type: 'negative',
+                timeLeft: 10
+            });
         };
     }).catch(error => {
         console.error(error);
+        _setError({
+            message: `An error occured: ${error}`,
+            type: 'negative',
+            timeLeft: 10
+        });
     });
 }
 

@@ -64,7 +64,7 @@ export const Source = ({ source, usedSource }) => {
 
     return (
         <div id='source-container'>
-            <FontAwesomeIcon icon='fa-solid fa-bucket' className='non-clickable-icon' />
+            <FontAwesomeIcon icon='fa-solid fa-box' className='non-clickable-icon' />
             <div id='source-name'>{source.sourceName}</div>
             {checkIcon}
             <FontAwesomeIcon icon='fa-solid fa-pen' className='clickable-icon' id='edit-source' onClick={handleEdit} />

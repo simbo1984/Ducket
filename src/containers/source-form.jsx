@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { GetAndUpsertSource } from '../containers/api/ado';
 
@@ -102,7 +103,10 @@ export const SourceForm = () => {
                 <input type="password" className='form-field' value={pat} onChange={(e) => setPat(e.target.value)} required />
             </div>
 
-            <button type="submit" id='submit-button'>Set Source</button>
+            <button type="submit" id='submit-button'>
+                <FontAwesomeIcon icon='fa-solid fa-square-check' />
+            </button>
+
         </form>
     );
 };

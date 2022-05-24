@@ -5,32 +5,42 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
     faFolderClosed,
     faFolderOpen,
-    faFile,
     faGear,
     faBookBookmark,
     faTrashCan,
-    faPlus,
+    faSquarePlus,
     faPen,
-    faBucket
+    faEarthAmericas,
+    faSquareCheck as faSquareCheckSolid,
+    faSquareXmark,
+    faMagnifyingGlass,
+    faBox
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faSquare,
     faSquareCheck
 } from '@fortawesome/free-regular-svg-icons'
+import {
+    faGithub
+} from '@fortawesome/fontawesome-free-brands'
 import './index.css';
 
 library.add(
     faFolderClosed,
     faFolderOpen,
-    faFile,
     faGear,
     faBookBookmark,
     faTrashCan,
-    faPlus,
+    faSquarePlus,
     faPen,
     faSquare,
     faSquareCheck,
-    faBucket);
+    faSquareCheckSolid,
+    faSquareXmark,
+    faMagnifyingGlass,
+    faEarthAmericas,
+    faBox,
+    faGithub);
 
 render(<Popup />, window.document.querySelector('#app-container'));
 

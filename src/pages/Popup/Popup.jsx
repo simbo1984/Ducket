@@ -2,18 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../../containers/api/db';
 import { Source } from '../../containers/source';
-import  * as setters from '../../containers/source-form';
+import  * as sourceForm from '../../containers/source-form';
 import {SourceForm} from '../../containers/source-form';
-import { GetUsedSourceFromStorage, TreeNav } from '../../containers/tree-nav';
+import { GetUsedSourceFromStorage, TreeNav, _setSearchText } from '../../containers/tree-nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LogoBar } from '../../containers/logo-bar';
+import { _searchMode, _setSearchMode, SearchBar } from '../../containers/search-bar';
+import { Banner } from '../../containers/banner';
 import './Popup.css';
-
-//TODO: Dynamical Light/Dark mode
-//TODO: Add banner to indicate near expiration of PAT
-//TODO: Add banner when failure with add source
-//TODO: Font + Styling CSS
-//TODO: Implement dynamic search
 
 export let _setUsedSource;
 
@@ -56,21 +52,46 @@ export const Popup = () => {
 
     e.preventDefault();
 
-    if (setters._displayType === 'none') {
-      setters._setDisplayType('flex');
+    if (sourceForm._displayType === 'none') {
+      sourceForm._setDisplayType('flex');
       
     } else {
 
-      setters._setEditedSource({ isEditMode: false, id: "" })
-      setters._setSourceName("");
-      setters._setOrganization("");
-      setters._setProject("");
-      setters._setRepo("");
-      setters._setFilePath("");
-      setters._setPat("");
+      sourceForm._setEditedSource({ isEditMode: false, id: "" })
+      sourceForm._setSourceName("");
+      sourceForm._setOrganization("");
+      sourceForm._setProject("");
+      sourceForm._setRepo("");
+      sourceForm._setFilePath("");
+      sourceForm._setPat("");
 
-      setters._setDisplayType('none');
+      sourceForm._setDisplayType('none');
     }
+  }
+
+  function handleSearch(e) {
+
+    e.preventDefault();
+
+    if (_searchMode === 'none') {
+      
+      _setSearchMode('flex');
+
+    } else {
+
+      document.getElementById('search-box').value = '';
+      _setSearchText('');
+      _setSearchMode('none');
+
+    }
+  }
+
+  function handleGitHub(e) {
+
+    e.preventDefault();
+
+    window.open('https://github.com/simbo1984/Ducket', '_blank');
+
   }
 
   if (isSetupMode) {
@@ -78,12 +99,19 @@ export const Popup = () => {
       <div id='sub-app-container'>
         <LogoBar />
         <div className='topnav-container'>
-          <FontAwesomeIcon icon='fa-solid fa-plus' className='clickable-icon' id='add-source' onClick={handleAdd} />
-          <div id='empty-container'></div>
-          <FontAwesomeIcon icon='fa-solid fa-book-bookmark' className='clickable-icon' id='go-to-bookmarks' onClick={handleToggle} />
+          <FontAwesomeIcon icon='fa-solid fa-square-plus' className='toolbar-icon' id='add-source' onClick={handleAdd} />
+          <span className='toolbar-span'>New source</span>
+          <FontAwesomeIcon icon='fa-solid fa-book-bookmark' className='toolbar-icon' id='go-to-bookmarks' onClick={handleToggle} />
+          <span className='toolbar-span'>Bookmarks</span>
+          <FontAwesomeIcon icon='fa-brands fa-github' className='toolbar-icon' id='github-profile' onClick={handleGitHub} />
+          <span className='toolbar-span'>About Ducket</span>
         </div>
         <SourceForm />
-        {sources.map(source => <Source key={source.id} source={source} usedSource={usedSource} />)}
+        <Banner />
+        <div id='source-list'>
+          <span id='source-list-title'>Available sources ({sources.length})</span>
+          {sources.map(source => <Source key={source.id} source={source} usedSource={usedSource} />)}
+        </div>     
       </div>
     );
   }
@@ -92,9 +120,14 @@ export const Popup = () => {
     <div id='sub-app-container'>
       <LogoBar />
       <div className='topnav-container' >
-        <input type='text' id='search-box' placeholder='Search' />
-        <FontAwesomeIcon icon='fa-solid fa-gear' className='clickable-icon' onClick={handleToggle} />
+        <FontAwesomeIcon icon='fa-solid fa-magnifying-glass' className='toolbar-icon' onClick={handleSearch} />
+        <span className='toolbar-span'>Search</span>
+        <FontAwesomeIcon icon='fa-solid fa-gear' className='toolbar-icon' onClick={handleToggle} />
+        <span className='toolbar-span'>Options</span>
+        <FontAwesomeIcon icon='fa-brands fa-github' className='toolbar-icon' onClick={handleGitHub} />
+        <span className='toolbar-span'>About Ducket</span>
       </div>
+      <SearchBar />
       <TreeNav />
     </div>
   );

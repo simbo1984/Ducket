@@ -6,16 +6,21 @@ import { useLiveQuery } from 'dexie-react-hooks';
 export let _setExpandedFolders;
 export let _expandedFolders;
 export let _links;
+export let _searchText;
+export let _setSearchText;
 
 export const TreeNav = () => {
 
   const [expandedFolders, setExpandedFolders] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     _setExpandedFolders = setExpandedFolders;
+    _setSearchText = setSearchText;
   });
 
   _expandedFolders = expandedFolders;
+  _searchText = searchText;
 
   const links = useLiveQuery(
     async () => {
@@ -45,13 +50,26 @@ export const TreeNav = () => {
 
   }
 
-  return (
-    <div className='tree'>
-      {links?.filter(useFilter)
-        .map(link => <TreeElement key={link.id} link={link} />)}
-    </div>
-  );
+  function useSearch(link) {
 
+    return link.url !== null && (link.name.indexOf(searchText) > -1 || link.url.indexOf(searchText) > -1);
+  }
+
+  if (searchText.length > 0) {
+    return (
+      <div className='tree'>
+        {links?.filter(useSearch)
+          .map(link => <TreeElement key={link.id} link={link} />)}
+      </div>
+    );
+  } else {
+    return (
+      <div className='tree'>
+        {links?.filter(useFilter)
+          .map(link => <TreeElement key={link.id} link={link} />)}
+      </div>
+    );
+  }
 }
 
 export function CollapseFolders(collapsedElementId) {

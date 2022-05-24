@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { _setExpandedFolders, _expandedFolders, _links, CollapseFolders } from './tree-nav';
+import { _setExpandedFolders, _expandedFolders, _links, _searchText, CollapseFolders } from './tree-nav';
 
 export const TreeElement = ({ link }) => {
 
@@ -33,6 +33,12 @@ export const TreeElement = ({ link }) => {
 
   const setIndention = (isFolder) => {
 
+    if (_searchText.length > 0) {
+
+      return 8;
+
+    }
+
     if (isFolder) {
 
       return (link.level + 1) * 8;
@@ -49,7 +55,7 @@ export const TreeElement = ({ link }) => {
 
     return (
       <div className='link' onClick={handleLink} style={{ marginLeft: setIndention(false)}} >
-        <FontAwesomeIcon icon="fa-solid fa-file" /> {link.name}
+        <FontAwesomeIcon icon="fa-solid fa-earth-americas" /> {link.name}
       </div>
     );
 
@@ -57,7 +63,7 @@ export const TreeElement = ({ link }) => {
 
     return (
       <div className='link' onClick={handleFolder} style={{ marginLeft: setIndention(true)}} >
-        <FontAwesomeIcon icon={ (isFolderExpanded) ? "fa-solid fa-folder-open" : "fa-solid fa-folder-closed" }  /> {link.name}
+        <FontAwesomeIcon icon={ (isFolderExpanded) ? "fa-solid fa-folder-open" : "fa-solid fa-folder-closed" } style={{ width: '18px' }} /> {link.name}
       </div>
     )
 
