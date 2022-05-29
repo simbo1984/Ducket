@@ -83,7 +83,7 @@ Now, the content of `build` folder will be the extension ready to be submitted t
 
 ## Contributions
 
-- Thanks to Michael Xieyang Liu ([his GitHub page](https://lxieyang.github.io)) for the boilerplate used in this project : [Chrome-extension-boilerplate-react](https://github.com/lxieyang/chrome-extension-boilerplate-react);
+- Thanks to Michael Xieyang Liu ([his website](https://lxieyang.github.io)) for the boilerplate used in this project : [Chrome-extension-boilerplate-react](https://github.com/lxieyang/chrome-extension-boilerplate-react);
 - [Duck](https://thenounproject.com/icon/duck-3416068/) icon by Minus Icons from [The Noun Project](https://thenounproject.com/);
 - [Concert One](https://fonts.google.com/specimen/Concert+One?query=concert+one) font by [Johan Kallas](https://fonts.google.com/?query=Johan%20Kallas) and [Mihkel Virkus](https://fonts.google.com/?query=Mihkel%20Virkus);
 - [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans?query=nunito+sans) font by [Vernon Adams](https://fonts.google.com/?query=Vernon%20Adams), [Jacques Le Bailly](https://fonts.google.com/?query=Jacques%20Le%20Bailly), [Manvel Shmavonyan](https://fonts.google.com/?query=Manvel%20Shmavonyan) and [Alexei Vanyashin](https://fonts.google.com/?query=Alexei%20Vanyashin).
