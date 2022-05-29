@@ -1,5 +1,6 @@
 import { db } from "../db";
 import { RemoveLinksFromSource } from "../links/links";
+import secrets from 'secrets';
 import * as CryptoJS from 'crypto-js'
 
 export async function UpdateSource(sourceId, sourceObject) {
@@ -12,7 +13,7 @@ export async function UpdateSource(sourceId, sourceObject) {
             project: sourceObject.project,
             repo: sourceObject.repo,
             filepath: sourceObject.filepath,
-            pat: CryptoJS.AES.encrypt(sourceObject.pat, process.env.KEY).toString(),
+            pat: CryptoJS.AES.encrypt(sourceObject.pat, secrets.key).toString(),
             url: sourceObject.url,
             modifiedAt: new Date()
         })
@@ -32,7 +33,7 @@ export async function InsertSource(sourceObject, url, sourceId) {
         let obj = sourceObject;
         obj.id = sourceId;
         obj.url = url;
-        obj.pat = CryptoJS.AES.encrypt(obj.pat, process.env.KEY).toString();
+        obj.pat = CryptoJS.AES.encrypt(obj.pat, secrets.key).toString();
         obj.createdAt = new Date();
         obj.modified = new Date();
 

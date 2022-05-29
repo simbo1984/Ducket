@@ -2,7 +2,8 @@ import { Buffer } from 'buffer';
 import { ParseMarkdown } from './links/methods';
 import { InsertSource, UpdateSource } from './sources/sources';
 import { _setError } from '../banner';
-import * as CryptoJS from 'crypto-js'
+import secrets from 'secrets';
+import CryptoJS from 'crypto-js';
 
 const BASE_URL = 'https://dev.azure.com/'
 const API_VERSION = 'api-version=7.1-preview.1'
@@ -10,7 +11,7 @@ const API_VERSION = 'api-version=7.1-preview.1'
 export async function GetAndUpsertSource(sourceObject, editedSource) {
 
     if (editedSource.isEditMode) {
-        let bytes = CryptoJS.AES.decrypt(sourceObject.pat, process.env.KEY);
+        let bytes = CryptoJS.AES.decrypt(sourceObject.pat, secrets.key);
         sourceObject.pat = bytes.toString(CryptoJS.enc.Utf8);
     }
 
