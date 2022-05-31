@@ -2,8 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Nunito+Sans:wght@200;400&display=swap');
 
 body {
-  width: 300px;
-  height: 460px;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 460px;
+  max-height: 460px;
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,4 +22,10 @@ code {
 
 #app-container {
   margin: 0px;
+  display: inherit;
+  flex-direction: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  min-height: inherit;
+  max-height: inherit;
 }

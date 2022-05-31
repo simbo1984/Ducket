@@ -44,8 +44,13 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: var(--background);
+#sub-app-container {
+  display: inherit;
+  flex-direction: inherit;
+  min-width: inherit;
+  max-width: inherit;
+  min-height: inherit;
+  max-height: inherit;
 }
 
 #logo {
@@ -54,7 +59,7 @@ body {
 }
 
 #logo-bar {
-  height: 12vh;
+  min-height: 12vh;
   background: hsla(196, 31%, 33%, 1);
   background: linear-gradient(
     135deg, 
@@ -168,7 +173,25 @@ body {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  margin: 8px 0px 12px 0px;
+  padding: 8px 0px 12px 0px;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.tree::-webkit-scrollbar {
+  width: 8px;  
+}
+
+.tree::-webkit-scrollbar-track {
+  background: var(--background-variant);
+}
+
+.tree::-webkit-scrollbar-thumb {
+  background: var(--divider);
+}
+
+.tree::-webkit-scrollbar-thumb:hover {
+  background: var(--text-soft);
 }
 
 .clickable-icon {
@@ -297,6 +320,24 @@ body {
   margin: 6px;
   border: 1px solid var(--divider);
   border-radius: 4px;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+#source-list::-webkit-scrollbar {
+  width: 6px;  
+}
+
+#source-list::-webkit-scrollbar-track {
+  background: var(--background-variant);
+}
+
+#source-list::-webkit-scrollbar-thumb {
+  background: var(--divider);
+}
+
+#source-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-soft);
 }
 
 #source-list-title {

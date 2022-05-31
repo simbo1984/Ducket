@@ -13,7 +13,7 @@ You just need to generate a personnal access token (PAT) with sufficient access 
 The markdown file can be of any name but needs to comply to a few requirements:
 
 - The heading syntax (`#, ##, ###, ...`) is used to define a folder (and thus, its level). In example, one hashtag is the equivalent of a folder on level one.
-- The link syntax (`[title](https://www.example.com)`) is used to define a link. Its level matches the first available preceding header
+- The link syntax (`[title](https://www.example.com)`) is used to define a link. Its level matches the first available preceding header. Any non-whitespace character after the closing parenthesis is ignored.
 - The file must be clean of anything else or it won't work.
 
 Here's an example :

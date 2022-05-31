@@ -32,7 +32,7 @@ export function ParseMarkdown(markdownText, editedSourceId) {
 
 function CreateBaseObject(entry) {
 
-  const regex = new RegExp('(?<=#)\\s|\\[|\\]\\(|\\)<br>', 'g')
+  const regex = new RegExp('(?<=#)\\s|\\[|\\]\\(|\\)\\S*', 'g')
 
   let isLink;
   let refObject = {
