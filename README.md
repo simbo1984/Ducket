@@ -4,6 +4,8 @@
 
 Ducket is a Chrome Extension that uses a Markdown file to generate a tree structure of websites and pages (sort of like a bookmarks management application).
 
+[Download the extension here](https://chrome.google.com/webstore/detail/ducket-ce/hfckpmjeceejjjlfckofdgihpljhbkic?hl=fr)
+
 ### How does it work?
 
 As of now, Ducket is made to work with files hosted on Git repos of Azure DevOps Services (dev.azure.com). So, as long as there's a markdown file on some Git repo of your Azure DevOps organization, you'll be able to use it.
