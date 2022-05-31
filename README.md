@@ -1,4 +1,4 @@
-# Ducket v0.0.1
+# Ducket v0.0.2
 
 ## What is Ducket?
 
