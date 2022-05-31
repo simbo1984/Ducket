@@ -21,12 +21,12 @@ Here's an example :
 Markdown file :
 ```
   # Folder A
-  [link-A](https://www.example.com)
-  [link-B](https://www.example.com)
+  [link-A](https://www.example.com)<br>
+  [link-B](https://www.example.com)<br>
   ## Sub-Folder A
-  [link-C](https://www.example.com)
+  [link-C](https://www.example.com)<br>
   # Folder B
-  [link-D](https://www.example.com)
+  [link-D](https://www.example.com)<br>
 ```
 
 Would result in :
