@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Ducket-CE",
   "description": "A chrome extension allowing bookmarks sharing from an hosted Markdown file.",
   "background": {

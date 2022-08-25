@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Nunito+Sans:wght@200;400&display=swap');
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #FAFAFA;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1D1D1D;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -13,6 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  background-color: var(--background);
 }
 
 code {

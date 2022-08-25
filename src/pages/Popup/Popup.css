@@ -97,6 +97,7 @@
   align-items: center;
   font-size: 14px;
   max-width: fit-content;
+  height: 18px;
   gap: 4px;
   color: var(--text-soft);
 }
@@ -106,6 +107,24 @@
   color: var(--secondary-laurel-green);
   opacity: 0.8; 
 }
+
+.link-detail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: fit-content;
+  white-space: nowrap;
+  padding-top: 2px;
+  overflow: clip;
+  font-size: 10px;
+  color: var(--text-soft);
+}
+
+.link-detail:hover {
+  color: var(--secondary-laurel-green);
+  opacity: 0.8; 
+}
+
 
 .topnav-container {
   display: flex;
@@ -173,7 +192,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  padding: 8px 0px 12px 0px;
+  padding: 8px 4px 12px 0px;
   overflow: auto;
   scroll-behavior: smooth;
 }

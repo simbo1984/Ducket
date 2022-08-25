@@ -1,6 +1,6 @@
 {
   "name": "ducket-ce",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A chrome extension allowing bookmarks sharing from an hosted Markdown file.",
   "license": "MIT",
   "scripts": {

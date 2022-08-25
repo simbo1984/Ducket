@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { TreeElementDetail } from './tree-element-detail';
 import { _setExpandedFolders, _expandedFolders, _links, _searchText, CollapseFolders } from './tree-nav';
 
 export const TreeElement = ({ link }) => {
@@ -56,6 +57,7 @@ export const TreeElement = ({ link }) => {
     return (
       <div className='link' onClick={handleLink} style={{ marginLeft: setIndention(false)}} >
         <FontAwesomeIcon icon="fa-solid fa-earth-americas" /> {link.name}
+        <TreeElementDetail key={link.id} link={link} />
       </div>
     );
 
